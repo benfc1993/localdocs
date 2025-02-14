@@ -1,0 +1,14 @@
+{
+    "$schema":"https://json.schemastore.org/tsconfig",
+    "compilerOptions": {
+        "target": "es2022",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
+        "module": "Node16",                                /* Specify what module code is generated. */
+        "strict":true,
+        "noEmit":true,
+        "moduleResolution":"node16",
+        "skipLibCheck":true,
+        "esModuleInterop":true,
+        "declaration":true
+    },
+    "include":["src"]
+}
