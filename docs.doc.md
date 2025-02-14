@@ -18,16 +18,13 @@
 
 ### Another
 
-[cParent.doc.md](./test/c/cParent.doc.md)
-
-[cChild.doc.md](./test/c/d/cChild.doc.md)
-
+[cParent.doc.md](./test/c/cParent.doc.md)  
+[cChild.doc.md](./test/c/d/cChild.doc.md)  
 
 ### Index
 
-[cParent.doc.md](./test/c/cParent.doc.md)
-
+[cParent.doc.md](./test/c/cParent.doc.md)  
 
 ### New category
 
-[cChild.doc.md](./test/c/d/cChild.doc.md)
+[cChild.doc.md](./test/c/d/cChild.doc.md)  

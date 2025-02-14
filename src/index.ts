@@ -34,7 +34,7 @@ function generateCategories(
     indexOutput.push(
       `\n### ${category.replace(/\w/, (match) => match.toUpperCase())}\n`,
     );
-    files.forEach((file) => indexOutput.push(`${fileLink(file)}\n`));
+    files.forEach((file) => indexOutput.push(`${fileLink(file)}  `));
   });
 }
 
