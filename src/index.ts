@@ -9,10 +9,12 @@ import {
 } from 'node:fs'
 import { linkDocs } from './linkDocs'
 import { relative } from 'node:path'
-import { processArgs } from './utils/processArgs'
+import { utils } from './utils'
 
 function generateDocs() {
-  const { path, extension, exclude, includeNode } = processArgs(process.argv)
+  const { path, extension, exclude, includeNode } = utils.processArgs(
+    process.argv
+  )
   if (!extension)
     return console.warn(
       `No extension provided. Please provide one with the '-e' flag`

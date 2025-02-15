@@ -1,5 +1,5 @@
 import { readdirSync } from 'fs'
-import { blobToRegex } from './utils/blobToRegex'
+import { utils } from './utils'
 
 export type PathTree = {
   path: string
@@ -30,7 +30,7 @@ function searchDir(root: string, options: FindOptions = {}) {
         valid &&
         options.matchPatterns.reduce(
           (acc, pattern) =>
-            acc || !!path.name.match(blobToRegex(pattern))?.length,
+            acc || !!path.name.match(utils.blobToRegex(pattern))?.length,
           false
         )
     }
@@ -40,8 +40,9 @@ function searchDir(root: string, options: FindOptions = {}) {
         options.excludePatterns.reduce((acc, pattern) => {
           return (
             acc &&
-            !`${path.parentPath.replace('./', '')}/`.match(blobToRegex(pattern))
-              ?.length
+            !`${path.parentPath.replace('./', '')}/`.match(
+              utils.blobToRegex(pattern)
+            )?.length
           )
         }, true)
     }
