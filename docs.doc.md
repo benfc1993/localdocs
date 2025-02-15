@@ -1,30 +1,23 @@
 # Index 
-
 * ***./test***
-	* [test.doc.md](./test/test.doc.md)
+	* [test](./test/test.doc.md)
 	* ***./test/b***
-		* [child.doc.md](./test/b/child.doc.md)
+		* [Some file](./test/b/child.doc.md)
 		* ***./test/b/e***
-			* [testing.doc.md](./test/b/e/testing.doc.md)
+			* [Testing header](./test/b/e/testing.doc.md)
 	* ***./test/c***
-		* [cParent.doc.md](./test/c/cParent.doc.md)
+		* [cParent](./test/c/cParent.doc.md)
 		* ***./test/c/d***
-			* [cChild.doc.md](./test/c/d/cChild.doc.md)
-			* [dSibling.doc.md](./test/c/d/dSibling.doc.md)
-
-
+			* [cChild](./test/c/d/cChild.doc.md)
+			* [dSibling](./test/c/d/dSibling.doc.md)
 ## Categories
 
-
 ### Another
-
-[cParent.doc.md](./test/c/cParent.doc.md)  
-[cChild.doc.md](./test/c/d/cChild.doc.md)  
+[cParent](./test/c/cParent.doc.md)  
+[cChild](./test/c/d/cChild.doc.md)  
 
 ### Index
-
-[cParent.doc.md](./test/c/cParent.doc.md)  
+[cParent](./test/c/cParent.doc.md)  
 
 ### New category
-
-[cChild.doc.md](./test/c/d/cChild.doc.md)  
+[cChild](./test/c/d/cChild.doc.md)  

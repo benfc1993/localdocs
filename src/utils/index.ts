@@ -1,3 +1,3 @@
-import { blobToRegex } from "./blobToRegex";
+import { blobToRegex } from './blobToRegex'
 
-export const utils = { blobToRegex };
+export const utils = { blobToRegex }

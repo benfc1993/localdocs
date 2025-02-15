@@ -1,18 +1,18 @@
-import type { Config } from "jest";
+import type { Config } from 'jest'
 
 const config: Config = {
-  preset: "ts-jest",
-  testEnvironment: "node",
+  preset: 'ts-jest',
+  testEnvironment: 'node',
   transform: {
-    "^.+\\.ts?$": "@swc/jest",
+    '^.+\\.ts?$': '@swc/jest',
   },
   globals: {
-    "ts-jest": {
+    'ts-jest': {
       isolatedModules: true,
     },
   },
   resetMocks: true,
-  testMatch: ["<rootDir>/src/**/*.test.ts"],
-};
+  testMatch: ['<rootDir>/src/**/*.test.ts'],
+}
 
-export default config;
+export default config
