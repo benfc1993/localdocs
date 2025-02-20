@@ -6,7 +6,7 @@ This tool mostly provides auto generated navigation through your documentation, 
 
 ## Generating docs
 
-Running the script is done by calling `repo-docs`. This will look for any markdown files within the project directory with the documentation extension which defaults to `doc.md`.
+Running the script is done by calling `localdocs`. This will look for any markdown files within the project directory with the documentation extension which defaults to `doc.md`.
 
 This will generate a `docs.doc.md` file at the root of the repository.
 
@@ -15,7 +15,7 @@ This will generate a `docs.doc.md` file at the root of the repository.
 You can pass an entry point as the second argument to only search for documentation files within a specified directory:
 
 ```sh
-npm run repo-docs ./test
+npm run localdocs ./test
 ```
 
 | flag           | description                                      | value             |
