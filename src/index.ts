@@ -48,7 +48,6 @@ repo-docs [<root-path>] [-e <file extension> | -x <paths,to,exclude> | --include
       matchPatterns: [`*${extension}`],
       excludePatterns,
     })
-    console.log(tree)
 
     const index = {}
 
