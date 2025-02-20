@@ -82,8 +82,12 @@ function generateCategories(
   index: Record<string, string[]>,
   writer: WriteStream
 ) {
+  const categories = Object.entries(index)
+  if (!categories.length) return
+
   writer.write('## Categories\n')
-  Object.entries(index).forEach(([category, files]) => {
+
+  categories.forEach(([category, files]) => {
     writer.write(
       `\n### ${category.replace(/\w/, (match) => match.toUpperCase())}\n`
     )
@@ -118,7 +122,7 @@ function generateBranch(tree: PathTree, writer: WriteStream, depth: number) {
 
 function addNaviagation(filePath: string) {
   const file = readFileSync(filePath).toString().split('\n')
-  const navigation = `[<-Home](${relative(filePath.slice(0, filePath.lastIndexOf('/')), `./docs.doc.md`)})</br>`
+  const navigation = `[<-Home](${relative(filePath.slice(0, filePath.lastIndexOf('/')), `./docs.md`)})</br>`
   if (file[0].startsWith('[<-Home]')) {
     file.shift()
   }
