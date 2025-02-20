@@ -1,5 +1,5 @@
 {
-  "name": "repo-docs",
+  "name": "localdocs",
   "version": "0.1.0",
   "main": "dist/index.js",
   "scripts": {
@@ -7,11 +7,11 @@
     "build": "esbuild --platform=node --outdir=dist --bundle --minify ./src/index.ts"
   },
   "bin": {
-    "repo-docs": "dist/index.js"
+    "localdocs": "dist/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/benfc1993/repo-docs.git"
+    "url": "git+https://github.com/benfc1993/localdocs.git"
   },
   "homepage": "https://github.com/benfc1993/scripts-cli#readme",
   "author": "Ben Feldberg Collins",

@@ -28,7 +28,7 @@ function generateDocs() {
 
     if (help) {
       return console.log(`
-repo-docs [<root-path>] [-e <file extension> | -x <paths,to,exclude> | --include-node | -h]
+localdocs [<root-path>] [-e <file extension> | -x <paths,to,exclude> | --include-node | -h]
 
 -e              file extension to use                               (default) .doc.md
 -x              comma seperated list of blobs or regex to ignore    (default) ''
