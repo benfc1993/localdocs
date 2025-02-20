@@ -31,7 +31,7 @@ The command will modify and generate the documentation files when it runs so you
 
 ```sh
 npm run generate:docs
-git add *.doc.md
+git add \*.doc.md docs.md
 ```
 
 ## Categories
