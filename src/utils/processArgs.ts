@@ -85,7 +85,7 @@ export function processArgs(processArgv: string[]) {
   }>
 
   return {
-    path: processArgv[2].startsWith('-') ? undefined : processArgv[2],
+    path: processArgv[2]?.startsWith('-') ? undefined : processArgv[2],
     ...args,
   }
 }

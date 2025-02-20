@@ -41,8 +41,7 @@ localdocs [<root-path>] [-e <file extension> | -x <paths,to,exclude> | --include
 
     if (exclude) excludePatterns.push(...exclude)
     if (!includeNode) excludePatterns.push('**/node_modules/*')
-    if (existsSync(`./docs${extension}`))
-      renameSync(`./docs${extension}`, `./docs${extension}.temp`)
+    if (existsSync(`./docs.md`)) renameSync(`./docs.md`, `./docs.md.temp`)
 
     const tree = find(path, {
       matchPatterns: [`*${extension}`],
@@ -59,25 +58,20 @@ localdocs [<root-path>] [-e <file extension> | -x <paths,to,exclude> | --include
     }
 
     linkDocs(tree, index)
-    generateIndexFile(extension, tree, index)
+    generateIndexFile(tree, index)
     console.log(`${sucessIcon} Docs generated`)
   } catch (err) {
     const error = err as Error
     console.error(`${errorIcon} ${error.message}`)
     process.exitCode = 1
   } finally {
-    if (existsSync(`./docs${fileExtension}.temp`))
-      renameSync(`./docs${fileExtension}.temp`, `./docs${fileExtension}`)
+    if (existsSync(`./docs.md.temp`)) renameSync(`./docs.md.temp`, `./docs.md`)
   }
 }
 
-function generateIndexFile(
-  extension: string,
-  tree: PathTree,
-  index: Record<string, string[]>
-) {
-  writeFileSync(`./docs${extension}`, '')
-  const writer = createWriteStream('./docs.doc.md')
+function generateIndexFile(tree: PathTree, index: Record<string, string[]>) {
+  writeFileSync(`./docs.md`, '')
+  const writer = createWriteStream('./docs.md')
 
   generateTree(tree, writer)
   generateCategories(index, writer)
