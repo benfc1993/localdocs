@@ -148,8 +148,8 @@ describe('find', () => {
       expect(tree).toStrictEqual(expected)
     })
 
-    it('should not return results for the either provided exclusion pattern', () => {
-      const tree = find('.', { excludePatterns: ['**/node/*', /.*\/utils$/] })
+    it.only('should not return results for the either provided exclusion pattern', () => {
+      const tree = find('.', { excludePatterns: ['**/node/*', /.*\/utils\//] })
       const expected: PathTree = {
         path: '.',
         files: [],

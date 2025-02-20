@@ -38,6 +38,8 @@ function searchDir(root: string, options: FindOptions = {}) {
       valid =
         valid &&
         options.excludePatterns.reduce((acc, pattern) => {
+          console.log(utils.blobToRegex(pattern))
+          console.log(`${path.parentPath.replace('./', '')}/`)
           return (
             acc &&
             !`${path.parentPath.replace('./', '')}/`.match(
