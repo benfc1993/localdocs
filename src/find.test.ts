@@ -149,7 +149,7 @@ describe('find', () => {
     })
 
     it('should not return results for the either provided exclusion pattern', () => {
-      const tree = find('.', { excludePatterns: ['**/node/*', /.*\/utils$/] })
+      const tree = find('.', { excludePatterns: ['**/node/*', /.*\/utils\//] })
       const expected: PathTree = {
         path: '.',
         files: [],

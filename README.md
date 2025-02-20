@@ -1,6 +1,6 @@
 # Repo Docs
 
-A tool to provide embedded docs into a repo. The idea is to reduce context switching and allowing tighter coupling between docs and code.
+This is tool to provide embedded docs into a repo. The idea is to reduce context switching and allowing tighter coupling between docs and code.
 
 This tool mostly provides auto generated navigation through your documentation, A navigation tree will always be created and you can specify categories to improve navigation.
 
