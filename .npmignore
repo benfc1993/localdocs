@@ -1,0 +1,9 @@
+node_modules
+test
+src
+.git
+.github
+tsconfig.build.json
+tsconfig.json
+jest.config.ts
+.prettierrc.json

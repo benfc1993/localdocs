@@ -62,6 +62,7 @@ function searchDir(root: string, options: FindOptions = {}) {
       tree.children.push(newChildren)
     }
   })
+
   if (!tree.children.length && !tree.files.length) return null
   return tree
 }

@@ -3,45 +3,73 @@
 import { find, PathTree } from './find'
 import {
   createWriteStream,
+  existsSync,
   readFileSync,
+  renameSync,
   writeFileSync,
   WriteStream,
 } from 'node:fs'
 import { linkDocs } from './linkDocs'
 import { relative } from 'node:path'
 import { utils } from './utils'
+import { errorIcon, sucessIcon, warningIcon } from './consoleIcons'
 
 function generateDocs() {
-  const { path, extension, exclude, includeNode } = utils.processArgs(
-    process.argv
-  )
-  if (!extension)
-    return console.warn(
-      `No extension provided. Please provide one with the '-e' flag`
-    )
-  if (!extension.endsWith('.md'))
-    return console.warn(
-      'Docs extension provided is not a markdown file. Please provide a markdown extension'
-    )
-  const excludePatterns: string[] = []
+  let fileExtension = '.doc.md'
+  try {
+    const {
+      path = '.',
+      extension = fileExtension,
+      exclude = [],
+      includeNode = false,
+      help = false,
+    } = utils.processArgs(process.argv)
+    fileExtension = extension
 
-  if (exclude) excludePatterns.push(...exclude)
-  if (!includeNode) excludePatterns.push('**/node_modules/*')
+    if (help) {
+      return console.log(`
+repo-docs [<root-path>] [-e <file extension> | -x <paths,to,exclude> | --include-node | -h]
 
-  const tree = find(path, {
-    matchPatterns: [`*${extension}`],
-    excludePatterns,
-  })
+-e              file extension to use                               (default) .doc.md
+-x              comma seperated list of blobs or regex to ignore    (default) ''
+--include-node  should include files in node_modules                (default) flase 
+-h              show help 
+      `)
+    }
 
-  const index = {}
+    const excludePatterns: string[] = []
 
-  if (!tree) {
-    console.warn(`No document files found with the extension: ${extension}`)
-    return
+    if (exclude) excludePatterns.push(...exclude)
+    if (!includeNode) excludePatterns.push('**/node_modules/*')
+    if (existsSync(`./docs${extension}`))
+      renameSync(`./docs${extension}`, `./docs${extension}.temp`)
+
+    const tree = find(path, {
+      matchPatterns: [`*${extension}`],
+      excludePatterns,
+    })
+    console.log(tree)
+
+    const index = {}
+
+    if (!tree) {
+      console.warn(
+        `${warningIcon} No document files found with the extension: ${extension}`
+      )
+      return
+    }
+
+    linkDocs(tree, index)
+    generateIndexFile(extension, tree, index)
+    console.log(`${sucessIcon} Docs generated`)
+  } catch (err) {
+    const error = err as Error
+    console.error(`${errorIcon} ${error.message}`)
+    process.exitCode = 1
+  } finally {
+    if (existsSync(`./docs${fileExtension}.temp`))
+      renameSync(`./docs${fileExtension}.temp`, `./docs${fileExtension}`)
   }
-
-  linkDocs(tree, index)
-  generateIndexFile(extension, tree, index)
 }
 
 function generateIndexFile(
@@ -72,23 +100,27 @@ function generateCategories(
 
 function generateTree(tree: PathTree, writer: WriteStream) {
   writer.write('# Index \n')
-  tree.children.forEach((child) => generateBranch(child, writer, 1))
+  generateBranch(tree, writer, 0)
+  writer.write('\n')
 }
 
 function generateBranch(tree: PathTree, writer: WriteStream, depth: number) {
-  writer.write(
-    `${Array.from({ length: Math.max(0, depth - 1) })
-      .fill('\t')
-      .join('')}* ***${tree.path}***\n`
-  )
-  tree.files.forEach((file) => {
-    const filePath = `${tree.path}/${file}`
-    addNaviagation(filePath)
+  if (tree.files.length) {
     writer.write(
-      `${Array.from({ length: depth }).fill('\t').join('')}* ${fileLink(filePath)}\n`
+      `${Array.from({ length: Math.max(0, depth) })
+        .fill('\t')
+        .join('')}* ***${tree.path}***\n`
     )
-  })
-  tree.children.forEach((child) => generateBranch(child, writer, depth + 1))
+    tree.files.forEach((file) => {
+      const filePath = `${tree.path}/${file}`
+      addNaviagation(filePath)
+      writer.write(
+        `${Array.from({ length: depth }).fill('\t').join('')}* ${fileLink(filePath)}\n`
+      )
+    })
+    depth += 1
+  }
+  tree.children.forEach((child) => generateBranch(child, writer, depth))
 }
 
 function addNaviagation(filePath: string) {

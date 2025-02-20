@@ -1,14 +1,27 @@
 {
   "name": "repo-docs",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.1.0",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest --verbose",
     "build": "esbuild --platform=node --outdir=dist --bundle --minify ./src/index.ts"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "bin": {
+    "repo-docs": "dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benfc1993/repo-docs.git"
+  },
+  "homepage": "https://github.com/benfc1993/scripts-cli#readme",
+  "author": "Ben Feldberg Collins",
+  "license": "MIT",
+  "keywords": [
+    "documentation",
+    "docs",
+    "tool",
+    "workflow"
+  ],
   "description": "",
   "devDependencies": {
     "@swc/core": "^1.10.16",
